@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/boards")
 public class BoardController {
 
-    @GetMapping("/{boardId)")
+    @GetMapping("/{boardId}")
     @ResponseStatus(HttpStatus.OK)
-    public void getBoards(@RequestParam(required = false) int page){
+    public void getBoards(@PathVariable long boardId){
 
     }
-
 }

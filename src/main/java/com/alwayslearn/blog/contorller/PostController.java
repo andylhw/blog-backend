@@ -24,6 +24,17 @@ public class PostController {
     @PutMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
     public void updatePost(@PathVariable Long boardId, @PathVariable Long postId ) {
+    
+    }
+    @PatchMapping("/{postId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void patchPosts(@PathVariable long postId, @PathVariable long boardsId){
+
+    }
+
+    @DeleteMapping("/{postId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePosts(@PathVariable long postId, @PathVariable long boardsId){
 
     }
 }
