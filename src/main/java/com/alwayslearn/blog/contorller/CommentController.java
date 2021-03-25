@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/boards/{boardsId}/posts/{postId}/comments")
 public class CommentController {
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
+
+    }
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public void addComment(@PathVariable long boardsId, @PathVariable long postId){
@@ -15,10 +20,13 @@ public class CommentController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateComment(@PathVariable long boardsId, @PathVariable long postId){}
+    public void updateComment(@PathVariable long boardsId, @PathVariable long postId){
+    
+    }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    public void deleteComment(@PathVariable long boardsId, @PathVariable long postId){}
-
+    public void deleteComment(@PathVariable long boardsId, @PathVariable long postId){
+    
+    }
 }
