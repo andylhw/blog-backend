@@ -11,7 +11,7 @@ public class CommentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public void getComments(@RequestParam(required = false) long size, @PathVariable String boardsId, @PathVariable String postId){
+    public void getComments(@RequestParam(required = false) long size, @PathVariable long boardsId, @PathVariable long postId){
 
     }
 }
