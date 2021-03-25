@@ -9,7 +9,7 @@ public class BoardController {
 
     @GetMapping("/{boardId}")
     @ResponseStatus(HttpStatus.OK)
-    public void get(@PathVariable long boardId){
+    public void getBoards(@PathVariable long boardId){
 
     }
 }
