@@ -10,18 +10,18 @@ public class PostController {
 
     @GetMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public void getPost(@PathVariable Long postId) throws ChangeSetPersister.NotFoundException {
+    public void getPost(@PathVariable Long boardId, @PathVariable Long postId) throws ChangeSetPersister.NotFoundException {
 
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void writePost(@RequestBody Long title, Long body){
+    public void writePost(@RequestBody Long title, @RequestBody Long body){
 
     }
     @PutMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public void updatePost(@PathVariable Long postId ) throws ChangeSetPersister.NotFoundException {
+    public void updatePost(@PathVariable Long boardId, @PathVariable Long postId ) throws ChangeSetPersister.NotFoundException {
 
     }
 }
