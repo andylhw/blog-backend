@@ -17,14 +17,14 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long postId;
 
-    //private user user.userId <userId 가져오는건 나중에.
+    private long userId //<userId 가져오는건 나중에.
     private String title;
     private String subject;
     private Date createdDate;
     private int commentNum;
     private long viewCount;
 
-    public Post(/*User userId,*/ String title, String subject, Date createdDate, int commentNum){
+    public Post(long userId, String title, String subject, Date createdDate, int commentNum){
         //this.userId = userId;
         this.title = title;
         this.subject = subject;
