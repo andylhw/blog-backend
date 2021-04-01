@@ -1,4 +1,4 @@
-package model;
+package com.alwayslearn.blog.model;
 
 
 import lombok.Getter;
