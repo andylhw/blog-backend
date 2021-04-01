@@ -18,7 +18,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long postId;
 
-    private long userId; //<userId 가져오는건 나중에.
+    private Long userId; //<userId 가져오는건 나중에.
     private String title;
     private String subject;
     private Date createdDate;

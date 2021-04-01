@@ -26,7 +26,8 @@ public class PostController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PostResponse writePost(@PathVariable Long boardId, @RequestBody WritePostRequest writePostRequest){
-        return null;
+        Post post = postService.writePost(boardId, new ModifyPostDto(writePostRequest));
+        return new PostResponse(post);
     }
 
     @PutMapping("/{postId}")

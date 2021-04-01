@@ -16,7 +16,9 @@ public class PostService {
 
     }
 
-    public Post wirtePost(Long boardId, ModifyPostDto modifyPostDto) {
-        return null;
+    public Post writePost(Long boardId, ModifyPostDto modifyPostDto) {
+        Post post = new Post(modifyPostDto);
+        return postRepository.save(post);
+
     }
 }

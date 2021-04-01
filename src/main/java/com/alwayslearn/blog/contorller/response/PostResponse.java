@@ -11,7 +11,19 @@ import java.util.Date;
 public class PostResponse {
 
 
-    public PostResponse(Post post){
+    private String name;
+    private String title;
+    private String subject;
+    private Date createdDate;
+    private int commentNum;
+    private long viewCount;
 
+    public PostResponse(Post post){
+        this.name = post.getUserId().toString();
+        this.title = post.getTitle();
+        this.subject = post.getSubject();
+        this.createdDate = post.getCreatedDate();
+        this.commentNum = post.getCommentNum();
+        this.viewCount = post.getViewCount();
     }
 }
