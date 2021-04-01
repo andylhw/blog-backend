@@ -21,8 +21,8 @@ public class Post {
     private String title;
     private String subject;
     private Date createdDate;
-    int commentNum;
-    long viewCount;
+    private int commentNum;
+    private long viewCount;
 
     public Post(/*User userId,*/ String title, String subject, Date createdDate, int commentNum){
         //this.userId = userId;
@@ -36,7 +36,15 @@ public class Post {
     public Post editPost(String title, String subject){
         this.title = title;
         this.subject = subject;
+        return this;
     }
 
+    public void increaseViewCount(){
+        this.viewCount++;
+    }
+
+    public void increseCommentNum(){
+        this.commentNum++;
+    }
 
 }
