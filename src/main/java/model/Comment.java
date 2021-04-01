@@ -24,20 +24,17 @@ public class Comment {
     private Date date;
     private String content;
 
+
     public Comment(long userId, long postId, Date date, String content) {
         this.userId = userId;
         this.postId = postId;
-        this.date = date;
+        this.date = new Date();
         this.content = content;
     }
 
-    public Date changeDate(Date date) {
-        this.date = date;
-        return date;
-    }
-
-    public String changeContent(String content) {
+    public String changeContent(String content, Date date) {
         this.content = content;
+        this.date = new Date();
         return content;
     }
 }
