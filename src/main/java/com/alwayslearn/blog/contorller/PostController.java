@@ -1,11 +1,13 @@
 package com.alwayslearn.blog.contorller;
 
+import com.alwayslearn.blog.contorller.request.UpdatePostRequest;
 import com.alwayslearn.blog.contorller.request.WritePostRequest;
 import com.alwayslearn.blog.contorller.response.PostResponse;
 import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -31,8 +33,9 @@ public class PostController {
 
     @PutMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public void updatePost(@PathVariable Long boardId, @PathVariable Long postId ) {
-
+    public PostResponse updatePost(@PathVariable Long boardId, @PathVariable Long postId, @RequestBody UpdatePostRequest updatePostRequest) throws ChangeSetPersister.NotFoundException {
+        Post post = postService.updatePost(boardId, postId, new ModifyPostDto(updatePostRequest));
+        return new PostResponse(post);
     }
     @PatchMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
