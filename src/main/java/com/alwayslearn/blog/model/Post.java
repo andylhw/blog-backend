@@ -24,11 +24,11 @@ public class Post {
     private int commentNum;
     private long viewCount;
 
-    public Post(long userId, String title, String subject, Date createdDate, int commentNum){
+    public Post(long userId, String title, String subject, int commentNum){
         //this.userId = userId;
         this.title = title;
         this.subject = subject;
-        this.createdDate = createdDate;
+        this.createdDate = new Date();
         this.commentNum = commentNum;
         this.viewCount = 0;
     }
