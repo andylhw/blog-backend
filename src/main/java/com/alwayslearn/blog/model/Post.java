@@ -47,4 +47,8 @@ public class Post {
         this.commentNum++;
     }
 
+    public void decreaseCommentNum(){
+        this.commentNum--;
+    }
+
 }
