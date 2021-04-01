@@ -1,5 +1,6 @@
 package com.alwayslearn.blog.model;
 
+import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,12 +25,19 @@ public class Post {
     private int commentNum;
     private long viewCount;
 
-    public Post(long userId, String title, String subject, int commentNum){
+    public Post(long userId, String title, String subject){
         this.userId = userId;
         this.title = title;
         this.subject = subject;
         this.createdDate = new Date();
-        this.commentNum = commentNum;
+        this.commentNum = 0;
+        this.viewCount = 0;
+    }
+
+    public Post(ModifyPostDto modifyPostDto){
+
+        this.createdDate = new Date();
+        this.commentNum = 0;
         this.viewCount = 0;
     }
 

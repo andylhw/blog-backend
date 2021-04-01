@@ -1,30 +1,38 @@
 package com.alwayslearn.blog.contorller;
 
+import com.alwayslearn.blog.contorller.request.WritePostRequest;
+import com.alwayslearn.blog.contorller.response.PostResponse;
+import com.alwayslearn.blog.model.Post;
+import com.alwayslearn.blog.model.dto.ModifyPostDto;
+import com.alwayslearn.blog.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/boards/{boardsId}/posts")
+@RequestMapping("/boards/{boardId}/posts")
+@RequiredArgsConstructor
 public class PostController {
+
+    private final PostService postService;
 
     @GetMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
     public void getPost(@PathVariable Long boardId, @PathVariable Long postId) {
-
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void writePost(@PathVariable Long boardId, @RequestBody writePostRequest WritePostRequest){
-
+    public PostResponse writePost(@PathVariable Long boardId, @RequestBody WritePostRequest writePostRequest){
+        return null;
     }
+
     @PutMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
     public void updatePost(@PathVariable Long boardId, @PathVariable Long postId ) {
-    
+
     }
     @PatchMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
