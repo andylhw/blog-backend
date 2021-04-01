@@ -25,7 +25,7 @@ public class Post {
     private long viewCount;
 
     public Post(long userId, String title, String subject, int commentNum){
-        //this.userId = userId;
+        this.userId = userId;
         this.title = title;
         this.subject = subject;
         this.createdDate = new Date();
