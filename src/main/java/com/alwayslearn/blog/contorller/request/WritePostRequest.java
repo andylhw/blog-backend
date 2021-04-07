@@ -15,8 +15,4 @@ public class WritePostRequest {
     private String title;
     private String subject;
 
-    private final String name;
-    private final String title;
-    private final String subject;
-
 }
