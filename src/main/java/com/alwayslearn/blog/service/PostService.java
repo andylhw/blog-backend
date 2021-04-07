@@ -15,8 +15,10 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void getPost(Long boardId, Long postId) {
-
+    public Post getPost(Long boardId, Long postId) throws ChangeSetPersister.NotFoundException {
+        Post post =  postRepository.findById(postId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+        post.increaseViewCount();
+        return postRepository.save(post);
     }
 
     public PostResponse writePost(Long boardId, ModifyPostDto modifyPostDto) { return null; }

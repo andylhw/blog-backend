@@ -10,7 +10,6 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 public class ModifyPostDto {
-
     private long userId;
     private String title;
     private String subject;

@@ -22,7 +22,9 @@ public class PostController {
 
     @GetMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public void getPost(@PathVariable Long boardId, @PathVariable Long postId) {
+    public PostResponse getPost(@PathVariable Long boardId, @PathVariable Long postId) throws ChangeSetPersister.NotFoundException {
+        Post post = this.postService.getPost(boardId, postId);
+        return new PostResponse(post);
     }
 
     @PostMapping
