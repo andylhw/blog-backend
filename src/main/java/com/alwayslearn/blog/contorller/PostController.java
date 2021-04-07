@@ -6,6 +6,7 @@ import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,9 @@ public class PostController {
 
     @GetMapping("/{postId}")
     @ResponseStatus(HttpStatus.OK)
-    public void getPost(@PathVariable Long boardId, @PathVariable Long postId) {
+    public PostResponse getPost(@PathVariable Long boardId, @PathVariable Long postId) throws ChangeSetPersister.NotFoundException {
+        Post post = this.postService.getPost(boardId, postId);
+        return new PostResponse(post);
     }
 
     @PostMapping

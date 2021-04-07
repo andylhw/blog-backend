@@ -9,8 +9,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 public class PostResponse {
-
-
+    private long postId;
     private String name;
     private String title;
     private String subject;
@@ -19,6 +18,7 @@ public class PostResponse {
     private long viewCount;
 
     public PostResponse(Post post){
+        this.postId= post.getPostId();
         this.name = post.getUserId().toString();
         this.title = post.getTitle();
         this.subject = post.getSubject();
