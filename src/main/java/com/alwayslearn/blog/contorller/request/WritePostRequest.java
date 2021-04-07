@@ -1,5 +1,8 @@
 package com.alwayslearn.blog.contorller.request;
 
+import com.alwayslearn.blog.contorller.PostController;
+import com.alwayslearn.blog.model.Post;
+import com.alwayslearn.blog.service.PostService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

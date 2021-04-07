@@ -21,7 +21,10 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public PostResponse writePost(Long boardId, ModifyPostDto modifyPostDto) { return null; }
+    public Post writePost(Long boardId, ModifyPostDto modifyPostDto) {
+        Post post = new Post(modifyPostDto);
+        return postRepository.save(post);
+    }
 
     public Post updatePost(Long boardId, Long postId, ModifyPostDto modifyPostDto) throws ChangeSetPersister.NotFoundException {
         Post post = postRepository.findById(postId).orElseThrow(ChangeSetPersister.NotFoundException::new);
