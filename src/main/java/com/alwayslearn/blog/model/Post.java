@@ -35,7 +35,9 @@ public class Post {
     }
 
     public Post(ModifyPostDto modifyPostDto){
-
+        this.userId = modifyPostDto.getUserId();
+        this.title = modifyPostDto.getTitle();
+        this.subject = modifyPostDto.getSubject();
         this.createdDate = new Date();
         this.commentNum = 0;
         this.viewCount = 0;

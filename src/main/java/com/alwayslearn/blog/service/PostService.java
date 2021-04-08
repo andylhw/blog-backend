@@ -1,13 +1,14 @@
 package com.alwayslearn.blog.service;
 
-import com.alwayslearn.blog.contorller.response.PostResponse;
+import com.alwayslearn.blog.exception.PostCantUpdateException;
+import com.alwayslearn.blog.exception.PostNotFoundException;
 import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.model.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,10 +16,11 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Post getPost(Long boardId, Long postId) throws ChangeSetPersister.NotFoundException {
-        Post post =  postRepository.findById(postId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+    @Transactional
+    public Post getPost(Long boardId, Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
         post.increaseViewCount();
-        return postRepository.save(post);
+        return post;
     }
 
     public Post writePost(Long boardId, ModifyPostDto modifyPostDto) {
@@ -26,9 +28,9 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post updatePost(Long boardId, Long postId, ModifyPostDto modifyPostDto) throws ChangeSetPersister.NotFoundException {
-        Post post = postRepository.findById(postId).orElseThrow(ChangeSetPersister.NotFoundException::new);
-        post.editPost(modifyPostDto.getTitle() ,modifyPostDto.getSubject());
+    public Post updatePost(Long boardId, Long postId, ModifyPostDto modifyPostDto) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new PostCantUpdateException(postId));
+        post.editPost(modifyPostDto.getTitle(), modifyPostDto.getSubject());
         return postRepository.save(post);
 
     }

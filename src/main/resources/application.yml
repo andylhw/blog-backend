@@ -1,0 +1,17 @@
+#spring:
+#  datasource:
+#    url: ${DB_URL}
+#    username: ${DB_USER}
+#    password: ${DB_PASSWORD}
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    # com.mysql.cj.jdbc.Driver
+
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+##    open-in-view: false
+#    properties:
+#      hibernate:
+#        show-sql: false
+#        format_sql: true
+#    hibernate:
+#      ddl-auto: update

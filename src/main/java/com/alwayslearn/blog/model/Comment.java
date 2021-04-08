@@ -3,10 +3,8 @@ package com.alwayslearn.blog.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -20,14 +18,18 @@ public class Comment {
     long Id;
 
     private long userId;
-    private long postId;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
     private Date date;
     private String content;
 
 
-    public Comment(long userId, long postId, Date date, String content) {
+    public Comment(long userId, Post post, String content) {
         this.userId = userId;
-        this.postId = postId;
+        this.post = post;
         this.date = new Date();
         this.content = content;
     }
