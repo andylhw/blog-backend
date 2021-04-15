@@ -9,8 +9,4 @@ import lombok.Getter;
 public class AddCommentRequest {
     private long userId;
     private String content;
-
-    public ModifyCommentDto toDto(){
-        return new ModifyCommentDto(userId, content);
-    }
 }

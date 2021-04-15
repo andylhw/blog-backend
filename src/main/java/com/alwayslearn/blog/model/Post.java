@@ -3,20 +3,25 @@ package com.alwayslearn.blog.model;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "post_id")
     long postId;
+
+    //@OneToMany(mappedBy = "post")
+    //private List<Comment> comment;
 
     private Long userId; //<userId 가져오는건 나중에.
     private String title;
