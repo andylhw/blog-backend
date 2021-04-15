@@ -1,6 +1,7 @@
 package com.alwayslearn.blog.contorller;
 
 import com.alwayslearn.blog.contorller.request.AddCommentRequest;
+import com.alwayslearn.blog.contorller.request.UpdateCommentRequest;
 import com.alwayslearn.blog.contorller.response.CommentResponse;
 import com.alwayslearn.blog.model.Comment;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
@@ -35,8 +36,9 @@ public class CommentController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateComment(@PathVariable long boardsId, @PathVariable long postId){
-    
+    public CommentResponse updateComment(@PathVariable long commentId, @PathVariable long postId, @RequestBody UpdateCommentRequest updateCommentRequest){
+        Comment comment = commentService.updateComment(commentId, updateCommentRequest.getContent());
+        return new CommentResponse(comment);
     }
 
     @DeleteMapping
