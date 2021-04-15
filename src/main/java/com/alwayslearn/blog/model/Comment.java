@@ -42,7 +42,7 @@ public class Comment {
         this.date = new Date();
     }
 
-    public String changeContent(String content, Date date) {
+    public String changeContent(String content) {
         this.content = content;
         this.date = new Date();
         return content;

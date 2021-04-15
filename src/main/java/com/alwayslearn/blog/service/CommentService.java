@@ -36,7 +36,7 @@ public class CommentService {
     }
     public Comment updateComment(long commentId, String content) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(()-> new CommentCantUpdateException(commentId));
-        comment.changeContent(content, new Date());
+        comment.changeContent(content);
         return commentRepository.save(comment);
     }
 
