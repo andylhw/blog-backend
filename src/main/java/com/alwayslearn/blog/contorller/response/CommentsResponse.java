@@ -2,6 +2,7 @@ package com.alwayslearn.blog.contorller.response;
 
 import com.alwayslearn.blog.model.Comment;
 import com.alwayslearn.blog.model.Post;
+import com.alwayslearn.blog.model.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,10 +11,10 @@ import java.util.List;
 
 @Getter
 public class CommentsResponse {
-    private List<Comment> comments;
+    private List<CommentDto> comments;
 
 
-    public CommentsResponse(List<Comment> comment){
+    public CommentsResponse(List<CommentDto> comment){
         this.comments = comment;
     }
 }

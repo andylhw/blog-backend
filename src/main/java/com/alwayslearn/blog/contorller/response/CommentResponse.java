@@ -3,6 +3,7 @@ package com.alwayslearn.blog.contorller.response;
 
 import com.alwayslearn.blog.model.Comment;
 import com.alwayslearn.blog.model.Post;
+import com.alwayslearn.blog.model.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -17,9 +18,8 @@ public class CommentResponse {
     private Date date;
     private String content;
 
-    public CommentResponse(Comment comment){
+    public CommentResponse(CommentDto comment){
         this.userId = comment.getUserId();
-        this.post = comment.getPost();
         this.date = comment.getDate();
         this.content = comment.getContent();
     }

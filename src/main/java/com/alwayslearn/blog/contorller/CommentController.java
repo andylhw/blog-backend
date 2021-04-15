@@ -4,6 +4,7 @@ import com.alwayslearn.blog.contorller.request.AddCommentRequest;
 import com.alwayslearn.blog.contorller.request.UpdateCommentRequest;
 import com.alwayslearn.blog.contorller.response.CommentResponse;
 import com.alwayslearn.blog.model.Comment;
+import com.alwayslearn.blog.model.dto.CommentDto;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
 import com.alwayslearn.blog.contorller.response.CommentsResponse;
 import com.alwayslearn.blog.service.CommentService;
@@ -23,21 +24,21 @@ public class CommentController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CommentsResponse getComments(@RequestParam(required = false) Long size, @RequestParam(required = false) Long page, @PathVariable long boardsId, @PathVariable long postId){
-        List<Comment> comment = this.commentService.getComment(size, page, boardsId, postId);
+        List<CommentDto> comment = this.commentService.getComment(size, page, boardsId, postId);
         return new CommentsResponse(comment);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public CommentResponse addComment(@PathVariable long boardsId, @PathVariable long postId, @RequestBody AddCommentRequest addCommentRequest){
-        Comment comment = commentService.addComment(postId, new ModifyCommentDto(addCommentRequest));
+        CommentDto comment = commentService.addComment(postId, new ModifyCommentDto(addCommentRequest));
         return new CommentResponse(comment);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public CommentResponse updateComment(@PathVariable long commentId, @PathVariable long postId, @RequestBody UpdateCommentRequest updateCommentRequest){
-        Comment comment = commentService.updateComment(commentId, updateCommentRequest.getContent());
+        CommentDto comment = commentService.updateComment(commentId, updateCommentRequest.getContent());
         return new CommentResponse(comment);
     }
 
