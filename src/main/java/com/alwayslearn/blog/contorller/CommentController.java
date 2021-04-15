@@ -1,8 +1,10 @@
 package com.alwayslearn.blog.contorller;
 
 import com.alwayslearn.blog.contorller.request.AddCommentRequest;
-import com.alwayslearn.blog.contorller.response.CommentsResponse;
+import com.alwayslearn.blog.contorller.response.CommentResponse;
 import com.alwayslearn.blog.model.Comment;
+import com.alwayslearn.blog.model.dto.ModifyCommentDto;
+import com.alwayslearn.blog.contorller.response.CommentsResponse;
 import com.alwayslearn.blog.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,8 +28,9 @@ public class CommentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void addComment(@PathVariable long boardsId, @PathVariable long postId, @RequestBody AddCommentRequest addCommentRequest){
-
+    public CommentResponse addComment(@PathVariable long boardsId, @PathVariable long postId, @RequestBody AddCommentRequest addCommentRequest){
+        Comment comment = commentService.addComment(postId, new ModifyCommentDto(addCommentRequest));
+        return new CommentResponse(comment);
     }
 
     @PutMapping

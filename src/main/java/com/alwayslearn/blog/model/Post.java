@@ -4,10 +4,7 @@ import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -16,6 +13,8 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "post_id")
     long postId;
 
     private Long userId; //<userId 가져오는건 나중에.
