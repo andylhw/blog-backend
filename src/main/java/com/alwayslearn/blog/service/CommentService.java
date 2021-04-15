@@ -8,10 +8,16 @@ import com.alwayslearn.blog.model.repository.CommentRepository;
 import com.alwayslearn.blog.model.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
+
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
 
@@ -19,5 +25,11 @@ public class CommentService {
         Post post = postRepository.findById(postId).orElseThrow(()->new PostNotFoundException(postId));
         Comment comment = new Comment(modifyCommentDto, post);
         return commentRepository.save(comment);
+    }
+}
+    @Transactional
+    public List<Comment> getComment(long size, long page, long boardsId, long postId) {
+        List<Comment> comment = commentRepository.findAllByPost_PostId(postId);
+        return comment;
     }
 }

@@ -4,10 +4,13 @@ import com.alwayslearn.blog.contorller.request.AddCommentRequest;
 import com.alwayslearn.blog.contorller.response.CommentResponse;
 import com.alwayslearn.blog.model.Comment;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
+import com.alwayslearn.blog.contorller.response.CommentsResponse;
 import com.alwayslearn.blog.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +21,11 @@ public class CommentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public void getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
-
+    public CommentsResponse getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
+        List<Comment> comment = this.commentService.getComment(size, page, boardsId, postId);
+        return new CommentsResponse(comment);
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public CommentResponse addComment(@PathVariable long boardsId, @PathVariable long postId, @RequestBody AddCommentRequest addCommentRequest){
