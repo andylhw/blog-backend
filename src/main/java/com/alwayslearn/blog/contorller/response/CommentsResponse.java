@@ -9,11 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
-public class CommentResponse {
+public class CommentsResponse {
     private List<Comment> comments;
 
 
-    public CommentResponse(List<Comment> comment){
+    public CommentsResponse(List<Comment> comment){
         this.comments = comment;
     }
 }

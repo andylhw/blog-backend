@@ -1,9 +1,8 @@
 package com.alwayslearn.blog.contorller;
 
 import com.alwayslearn.blog.contorller.request.AddCommentRequest;
-import com.alwayslearn.blog.contorller.response.CommentResponse;
+import com.alwayslearn.blog.contorller.response.CommentsResponse;
 import com.alwayslearn.blog.model.Comment;
-import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,9 +19,9 @@ public class CommentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public CommentResponse getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
+    public CommentsResponse getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
         List<Comment> comment = this.commentService.getComment(size, page, boardsId, postId);
-        return new CommentResponse(comment);
+        return new CommentsResponse(comment);
     }
 
     @PostMapping
