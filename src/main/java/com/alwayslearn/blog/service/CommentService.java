@@ -4,7 +4,6 @@ import com.alwayslearn.blog.exception.PostNotFoundException;
 import com.alwayslearn.blog.model.Comment;
 import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
-import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.model.repository.CommentRepository;
 import com.alwayslearn.blog.model.repository.PostRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,5 @@
 package com.alwayslearn.blog.contorller.request;
 
-import com.alwayslearn.blog.model.dto.ModifyCommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

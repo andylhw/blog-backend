@@ -2,17 +2,15 @@ package com.alwayslearn.blog.model;
 
 
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
-import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 
 public class Comment {

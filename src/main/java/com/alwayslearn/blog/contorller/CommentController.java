@@ -2,11 +2,8 @@ package com.alwayslearn.blog.contorller;
 
 import com.alwayslearn.blog.contorller.request.AddCommentRequest;
 import com.alwayslearn.blog.contorller.response.CommentResponse;
-import com.alwayslearn.blog.contorller.response.PostResponse;
 import com.alwayslearn.blog.model.Comment;
-import com.alwayslearn.blog.model.Post;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
-import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

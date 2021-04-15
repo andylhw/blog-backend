@@ -3,15 +3,12 @@ package com.alwayslearn.blog.model;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 public class Post {
     @Id
@@ -19,9 +16,6 @@ public class Post {
 
     @Column(name = "post_id")
     long postId;
-
-    //@OneToMany(mappedBy = "post")
-    //private List<Comment> comment;
 
     private Long userId; //<userId 가져오는건 나중에.
     private String title;
