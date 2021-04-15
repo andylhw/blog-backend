@@ -30,7 +30,7 @@ public class CommentService {
     }
 
     @Transactional
-    public List<Comment> getComment(long size, long page, long boardsId, long postId) {
+    public List<Comment> getComment(Long size, Long page, long boardsId, long postId) {
         List<Comment> comment = commentRepository.findAllByPost_PostId(postId);
         return comment;
     }

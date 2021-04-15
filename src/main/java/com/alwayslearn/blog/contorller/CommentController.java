@@ -22,7 +22,7 @@ public class CommentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public CommentsResponse getComments(@RequestParam(required = false) long size, @RequestParam(required = false) long page, @PathVariable long boardsId, @PathVariable long postId){
+    public CommentsResponse getComments(@RequestParam(required = false) Long size, @RequestParam(required = false) Long page, @PathVariable long boardsId, @PathVariable long postId){
         List<Comment> comment = this.commentService.getComment(size, page, boardsId, postId);
         return new CommentsResponse(comment);
     }
