@@ -29,7 +29,7 @@ public class UpdatePostTest extends BaseControllerTest {
                 .content(this.objectMapper.writeValueAsString(updatePostRequest))
         );
         //Then
-        resultActions.andExpect(status().isCreated())정
+        resultActions.andExpect(status().isCreated())
 
                 .andExpect(jsonPath("userId").value(1))
                 .andExpect(jsonPath("title").value("Title"))
