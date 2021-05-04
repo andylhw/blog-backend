@@ -38,12 +38,13 @@ public class UpdateCommentTest extends BaseControllerTest {
 
                 .andDo(document("update-comment",
                         requestFields(
-                                fieldWithPath("subject").type(JsonFieldType.STRING).description("포스트 본문"),
+                                fieldWithPath("subject").type(JsonFieldType.STRING).description("댓글 수정문"),
                                 fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 ID")
                         ),
                         responseFields(
                                 fieldWithPath("postId").type(JsonFieldType.NUMBER).description("포스트 ID"),
-                                fieldWithPath("subject").type(JsonFieldType.STRING).description("포스트 본문"))
+                                fieldWithPath("subject").type(JsonFieldType.STRING).description("포스트 본문"),
+                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 ID"))
                         )
                 )
         ;
