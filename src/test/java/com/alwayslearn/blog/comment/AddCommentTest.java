@@ -11,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.Date;
-
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -22,8 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("댓글 저장 테스트")
 public class AddCommentTest extends BaseControllerTest {
 
-    //private final PostService postService;
-
     @Autowired
     PostService postService;
 
@@ -32,7 +28,6 @@ public class AddCommentTest extends BaseControllerTest {
     void insertCommentSuccess() throws Exception{
         //Given
         Long postId = postService.writePost((long)1, new ModifyPostDto(1,"제목","내용")).getPostId();
-        //WritePostRequest writePostRequest = new WritePostRequest(1,"title","subject");
         AddCommentRequest addCommentRequest = new AddCommentRequest(1, "content");
         //When
         ResultActions resultActions = this.mockMvc.perform(post("/boards/{boardsId}/posts/{postId}/comments",1,postId)
@@ -56,8 +51,8 @@ public class AddCommentTest extends BaseControllerTest {
                                 fieldWithPath("post.title").type(JsonFieldType.STRING).description("제목"),
                                 fieldWithPath("post.subject").type(JsonFieldType.STRING).description("제목"),
                                 fieldWithPath("post.createdDate").type(JsonFieldType.STRING).description("날짜"),
-                                fieldWithPath("post.commentNum").type(JsonFieldType.NUMBER).description("제목"),
-                                fieldWithPath("post.viewCount").type(JsonFieldType.NUMBER).description("제목"),
+                                fieldWithPath("post.commentNum").type(JsonFieldType.NUMBER).description("댓글 수"),
+                                fieldWithPath("post.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                 fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 ID"),
                                 fieldWithPath("post").type(JsonFieldType.OBJECT).description("포스트"),
                                 fieldWithPath("date").type(JsonFieldType.STRING).description("댓글 작성 날짜"),
