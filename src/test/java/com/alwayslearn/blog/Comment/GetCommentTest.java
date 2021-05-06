@@ -3,6 +3,10 @@ package com.alwayslearn.blog.Comment;
 import com.alwayslearn.blog.common.BaseControllerTest;
 import com.alwayslearn.blog.contorller.request.AddCommentRequest;
 import com.alwayslearn.blog.contorller.request.WritePostRequest;
+import com.alwayslearn.blog.model.dto.ModifyCommentDto;
+import com.alwayslearn.blog.model.dto.ModifyPostDto;
+import com.alwayslearn.blog.service.CommentService;
+import com.alwayslearn.blog.service.PostService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,44 +26,48 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 @DisplayName("댓글 열람 테스트")
 public class GetCommentTest extends BaseControllerTest {
 
+    @Autowired
+    PostService postService;
+
+    @Autowired
+    CommentService commentService;
+
     @Test
     @DisplayName("댓글 열람 (성공)")
     void GetCommentSuccess() throws Exception {
         //Given
+        Long postId = postService.writePost((long)1, new ModifyPostDto(1, "제목", "내용")).getPostId();
+        Long commentId = commentService.addComment(postId, new ModifyCommentDto((long)1, "content")).getId();
+
         AddCommentRequest addCommentRequest = new AddCommentRequest(1, "content");
-        WritePostRequest writePostRequest = new WritePostRequest(1,"title", "subject");
 
-        ResultActions postResultActions = this.mockMvc.perform(post("/boards/{boardId}/posts", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(this.objectMapper.writeValueAsString(writePostRequest))
-        );
-
-        ResultActions commentResultActions = this.mockMvc.perform(post("/boards/{boardId}/posts/{postId}/comments}", 1)
+        ResultActions commentResultActions = this.mockMvc.perform(post("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(addCommentRequest))
         );
 
         //When
-        ResultActions postCheck = this.mockMvc.perform(get("/boards/{boardId}/posts", 1));
-        ResultActions commentCheck = this.mockMvc.perform(get("/boards/{boardId}/posts/{postId}/comments}", 1));
+        ResultActions commentCheck = this.mockMvc.perform(get("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId));
                 
         //Then
-        postCheck.andExpect(status().isCreated());
         commentCheck.andExpect(status().isOk())
 
-                .andExpect(jsonPath("userId").value(1))
-                .andExpect(jsonPath("content").value("Content"))
+                .andExpect(jsonPath("comments[0].userId").value(1))
+                .andExpect(jsonPath("comments[0].content").value("content"))
 
                 .andDo(document("get-comment",
-                        requestFields(
-                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 ID"),
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용")
-                        ),
                         responseFields(
-                                fieldWithPath("userId").type(JsonFieldType.NUMBER).description("유저 ID"),
-                                fieldWithPath("post").type(JsonFieldType.OBJECT).description("포스트"),
-                                fieldWithPath("date").type(JsonFieldType.STRING).description("댓글 작성 날짜"),
-                                fieldWithPath("content").type(JsonFieldType.STRING).description("댓글 내용"))
+                                fieldWithPath("comments[0].id").type(JsonFieldType.NUMBER).description("댓글 ID"),
+                                fieldWithPath("comments[0].userId").type(JsonFieldType.NUMBER).description("유저 ID"),
+                                fieldWithPath("comments[0].post.postId").type(JsonFieldType.NUMBER).description("포스트 ID"),
+                                fieldWithPath("comments[0].post.userId").type(JsonFieldType.NUMBER).description("유저 ID"),
+                                fieldWithPath("comments[0].post.title").type(JsonFieldType.STRING).description("제목"),
+                                fieldWithPath("comments[0].post.subject").type(JsonFieldType.STRING).description("내용"),
+                                fieldWithPath("comments[0].post.createdDate").type(JsonFieldType.STRING).description("날짜"),
+                                fieldWithPath("comments[0].post.commentNum").type(JsonFieldType.NUMBER).description("댓글 수"),
+                                fieldWithPath("comments[0].post.viewCount").type(JsonFieldType.NUMBER).description("조회수"),
+                                fieldWithPath("comments[0].date").type(JsonFieldType.STRING).description("댓글 작성 날짜"),
+                                fieldWithPath("comments[0].content").type(JsonFieldType.STRING).description("댓글 내용"))
                         )
                 );
     };
