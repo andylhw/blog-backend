@@ -21,6 +21,7 @@ public class CommentResponse {
     public CommentResponse(CommentDto comment){
         this.userId = comment.getUserId();
         this.date = comment.getDate();
+        this.post = comment.getPost();
         this.content = comment.getContent();
     }
 
