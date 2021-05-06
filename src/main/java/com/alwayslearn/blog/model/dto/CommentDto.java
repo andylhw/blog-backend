@@ -14,10 +14,8 @@ public class CommentDto {
     long Id;
     private Post post;
     private long userId;
-    private Post post;
     private Date date;
     private String content;
-    private Post post;
 
     public CommentDto(Comment comment){
         this.post = comment.getPost();
@@ -26,7 +24,6 @@ public class CommentDto {
         this.userId = comment.getUserId();
         this.date = comment.getDate();
         this.content = comment.getContent();
-        this.post = comment.getPost();
     }
 
 }

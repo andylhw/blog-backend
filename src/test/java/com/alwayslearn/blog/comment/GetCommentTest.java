@@ -1,8 +1,6 @@
-package com.alwayslearn.blog.Comment;
+package com.alwayslearn.blog.comment;
 
 import com.alwayslearn.blog.common.BaseControllerTest;
-import com.alwayslearn.blog.contorller.request.AddCommentRequest;
-import com.alwayslearn.blog.contorller.request.WritePostRequest;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.service.CommentService;
@@ -10,18 +8,15 @@ import com.alwayslearn.blog.service.PostService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.test.web.servlet.ResultActions;
 
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 
 @DisplayName("댓글 열람 테스트")
 public class GetCommentTest extends BaseControllerTest {
@@ -36,12 +31,12 @@ public class GetCommentTest extends BaseControllerTest {
     @DisplayName("댓글 열람 (성공)")
     void GetCommentSuccess() throws Exception {
         //Given
-        Long postId = postService.writePost((long)1, new ModifyPostDto(1, "제목", "내용")).getPostId();
-        Long commentId = commentService.addComment(postId, new ModifyCommentDto((long)1, "content")).getId();
+        Long postId = postService.writePost((long) 1, new ModifyPostDto(1, "제목", "내용")).getPostId();
+        Long commentId = commentService.addComment(postId, new ModifyCommentDto((long) 1, "content")).getId();
 
         //When
         ResultActions commentCheck = this.mockMvc.perform(get("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId));
-                
+
         //Then
         commentCheck.andExpect(status().isOk())
 
@@ -63,5 +58,7 @@ public class GetCommentTest extends BaseControllerTest {
                                 fieldWithPath("comments[0].content").type(JsonFieldType.STRING).description("댓글 내용"))
                         )
                 );
-    };
+    }
+
+    ;
 }

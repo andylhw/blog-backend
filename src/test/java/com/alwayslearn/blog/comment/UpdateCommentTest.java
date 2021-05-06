@@ -1,9 +1,7 @@
-package com.alwayslearn.blog.post;
+package com.alwayslearn.blog.comment;
 
 import com.alwayslearn.blog.common.BaseControllerTest;
 import com.alwayslearn.blog.contorller.request.UpdateCommentRequest;
-import com.alwayslearn.blog.contorller.request.UpdatePostRequest;
-import com.alwayslearn.blog.contorller.request.WritePostRequest;
 import com.alwayslearn.blog.model.dto.ModifyCommentDto;
 import com.alwayslearn.blog.model.dto.ModifyPostDto;
 import com.alwayslearn.blog.service.CommentService;
@@ -16,7 +14,6 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -33,14 +30,14 @@ public class UpdateCommentTest extends BaseControllerTest {
 
     @Test
     @DisplayName("댓글 수정(성공)")
-    void updateCommentSuccess() throws Exception{
+    void updateCommentSuccess() throws Exception {
         //Given
-        Long postId = postService.writePost((long)1, new ModifyPostDto(1, "제목", "내용")).getPostId();
-        Long commentId = commentService.addComment(postId, new ModifyCommentDto((long)1, "댓글내용")).getId();
-        UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest(1,"Subject");
+        Long postId = postService.writePost((long) 1, new ModifyPostDto(1, "제목", "내용")).getPostId();
+        Long commentId = commentService.addComment(postId, new ModifyCommentDto((long) 1, "댓글내용")).getId();
+        UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest(1, "Subject");
 
         //When
-        ResultActions resultActions = this.mockMvc.perform(put("/boards/{boardId}/posts/{postId}/comments/{commentId}",1, postId, commentId)
+        ResultActions resultActions = this.mockMvc.perform(put("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(updateCommentRequest))
         );

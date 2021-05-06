@@ -1,7 +1,6 @@
 package com.alwayslearn.blog.post;
 
 import com.alwayslearn.blog.common.BaseControllerTest;
-import com.alwayslearn.blog.contorller.request.UpdatePostRequest;
 import com.alwayslearn.blog.contorller.request.WritePostRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,11 +19,11 @@ public class AddPostTest extends BaseControllerTest {
 
     @Test
     @DisplayName("포스트 저장(성공)")
-    void insertPostSuccess() throws Exception{
+    void insertPostSuccess() throws Exception {
         //Given
         WritePostRequest writePostRequest = new WritePostRequest(1, "Title", "Subject");
         //When
-        ResultActions resultActions = this.mockMvc.perform(post("/boards/{boardId}/posts",1)
+        ResultActions resultActions = this.mockMvc.perform(post("/boards/{boardId}/posts", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(writePostRequest))
         );
