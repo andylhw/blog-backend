@@ -39,13 +39,6 @@ public class GetCommentTest extends BaseControllerTest {
         Long postId = postService.writePost((long)1, new ModifyPostDto(1, "제목", "내용")).getPostId();
         Long commentId = commentService.addComment(postId, new ModifyCommentDto((long)1, "content")).getId();
 
-        AddCommentRequest addCommentRequest = new AddCommentRequest(1, "content");
-
-        ResultActions commentResultActions = this.mockMvc.perform(post("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(this.objectMapper.writeValueAsString(addCommentRequest))
-        );
-
         //When
         ResultActions commentCheck = this.mockMvc.perform(get("/boards/{boardId}/posts/{postId}/comments/{commentId}", 1, postId, commentId));
                 
