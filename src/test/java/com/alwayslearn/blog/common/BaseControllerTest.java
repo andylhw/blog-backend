@@ -18,6 +18,7 @@ import javax.transaction.Transactional;
 @Import(RestDocsConfiguration.class)
 @AutoConfigureRestDocs(uriScheme = "https", uriHost = "templet.restapi.com", uriPort = 443)
 public class BaseControllerTest {
+  
     @Autowired
     protected MockMvc mockMvc;
 

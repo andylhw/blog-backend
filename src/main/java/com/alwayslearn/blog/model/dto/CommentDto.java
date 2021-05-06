@@ -16,6 +16,7 @@ public class CommentDto {
     private Post post;
     private Date date;
     private String content;
+    private Post post;
 
     public CommentDto(Comment comment){
         this.Id = comment.getId();
@@ -23,6 +24,7 @@ public class CommentDto {
         this.userId = comment.getUserId();
         this.date = comment.getDate();
         this.content = comment.getContent();
+        this.post = comment.getPost();
     }
 
 }
