@@ -34,7 +34,7 @@ public class CommentController {
         return new CommentResponse(comment);
     }
 
-    @PutMapping
+    @PutMapping("/{commentId}")
     @ResponseStatus(HttpStatus.OK)
     public CommentResponse updateComment(@PathVariable long commentId, @PathVariable long postId, @RequestBody UpdateCommentRequest updateCommentRequest){
         CommentDto comment = commentService.updateComment(commentId, updateCommentRequest.getContent());

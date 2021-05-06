@@ -12,6 +12,7 @@ import java.util.Date;
 public class CommentDto {
 
     long Id;
+    private Post post;
     private long userId;
     private Post post;
     private Date date;
@@ -19,6 +20,7 @@ public class CommentDto {
     private Post post;
 
     public CommentDto(Comment comment){
+        this.post = comment.getPost();
         this.Id = comment.getId();
         this.post=comment.getPost();
         this.userId = comment.getUserId();
