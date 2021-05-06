@@ -20,6 +20,7 @@ public class CommentResponse {
 
     public CommentResponse(CommentDto comment){
         this.userId = comment.getUserId();
+        this.post = comment.getPost();
         this.date = comment.getDate();
         this.content = comment.getContent();
     }
