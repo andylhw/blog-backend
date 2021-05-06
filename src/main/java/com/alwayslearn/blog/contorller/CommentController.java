@@ -21,7 +21,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping
+    @GetMapping("/{commentId}")
     @ResponseStatus(HttpStatus.OK)
     public CommentsResponse getComments(@RequestParam(required = false) Long size, @RequestParam(required = false) Long page, @PathVariable long boardsId, @PathVariable long postId){
         List<CommentDto> comment = this.commentService.getComment(size, page, boardsId, postId);
